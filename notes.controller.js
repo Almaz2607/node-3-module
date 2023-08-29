@@ -27,11 +27,20 @@ async function printNotes() {
   const notes = await getNotes();
   console.log(chalk.bgBlue("Here is the list of notes:"));
   notes.forEach((note) => {
-    console.log(chalk.blue(note.title));
+    console.log(chalk.blue(note.id, note.title));
   });
+}
+
+async function removeNoteById({ id }) {
+  const notes = await getNotes();
+
+  const notesCrop = notes.filter((note) => note.id !== id.toString());
+  await fs.writeFile(notesPath, JSON.stringify(notesCrop));
+  console.log(chalk.bgCyanBright("Note was removed!"));
 }
 
 module.exports = {
   addNote,
   printNotes,
+  removeNoteById,
 };
