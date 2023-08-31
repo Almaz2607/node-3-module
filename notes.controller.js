@@ -31,7 +31,7 @@ async function printNotes() {
   });
 }
 
-async function removeNoteById({ id }) {
+async function removeNote(id) {
   const notes = await getNotes();
 
   const notesCrop = notes.filter((note) => note.id !== id.toString());
@@ -41,6 +41,6 @@ async function removeNoteById({ id }) {
 
 module.exports = {
   addNote,
-  printNotes,
-  removeNoteById,
+  getNotes,
+  removeNote,
 };
